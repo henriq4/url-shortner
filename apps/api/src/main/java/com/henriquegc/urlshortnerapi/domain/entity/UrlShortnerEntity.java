@@ -1,38 +1,28 @@
 package com.henriquegc.urlshortnerapi.domain.entity;
 
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@Document
 public class UrlShortnerEntity {
-
-
+    @Id
     private String id;
 
+    @Indexed(unique = true)
     private String code;
 
     private String url;
 
-    public UrlShortnerEntity(String id, String code, String url) {
-        this.id = id;
+    public UrlShortnerEntity(String code, String url) {
         this.code = code;
         this.url = url;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getUrl() {
-        return url;
     }
 
     public void setUrl(String url) {
