@@ -1,7 +1,11 @@
 import {useForm} from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"
+import {createShortUrl, createShortUrlSchema} from "../schemas/createShortUrlSchema.ts";
 
 function App() {
-  const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm()
+  const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<createShortUrl>({
+    resolver: yupResolver(createShortUrlSchema)
+  })
 
   const onSubmit = async (data: any) => {
     console.log(data)
@@ -21,6 +25,8 @@ function App() {
             Be short!
           </button>
         </div>
+
+        <span className="text-red-500">{errors.url?.message}</span>
       </form>
     </div>
   )
