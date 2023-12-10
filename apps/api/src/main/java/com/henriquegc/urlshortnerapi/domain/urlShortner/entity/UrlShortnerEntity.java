@@ -1,11 +1,10 @@
-package com.henriquegc.urlshortnerapi.domain.entity;
+package com.henriquegc.urlshortnerapi.domain.urlShortner.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
 @Document
 public class UrlShortnerEntity {
     @Id
@@ -27,5 +26,13 @@ public class UrlShortnerEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

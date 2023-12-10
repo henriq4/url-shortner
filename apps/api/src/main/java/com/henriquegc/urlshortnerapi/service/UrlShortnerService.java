@@ -1,26 +1,41 @@
 package com.henriquegc.urlshortnerapi.service;
 
-import com.henriquegc.urlshortnerapi.domain.entity.UrlShortnerEntity;
+import com.henriquegc.urlshortnerapi.domain.urlShortner.dto.CreateUrlShortnerDTO;
+import com.henriquegc.urlshortnerapi.domain.urlShortner.entity.UrlShortnerEntity;
+import com.henriquegc.urlshortnerapi.repository.UrlShortnerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
 @Service
 public class UrlShortnerService {
-     private ArrayList<UrlShortnerEntity> urlShortnerEntity;
 
-    public String shortenUrl() {
-        UrlShortnerEntity urlShortnerEntity = new UrlShortnerEntity("kdjaskdjsaadsjk", "hsadsan", "https://www.google.com");
+    @Autowired
+    private UrlShortnerRepository repository;
 
-        System.out.println("Shortened URL: " + urlShortnerEntity.getCode());
+    public String shortenUrl(CreateUrlShortnerDTO createUrlShortnerDTO) {
+        String code = UUID.randomUUID().toString().substring(0, 6);
 
-        return urlShortnerEntity.getCode();
+        UrlShortnerEntity urlShortnerEntity = new UrlShortnerEntity(code, createUrlShortnerDTO.url());
+
+        repository.insert(urlShortnerEntity);
+
+        return code;
     }
 
-    public RedirectView getShortenedUrlByCode(String shortenedUrl) {
+    public RedirectView getShortenedUrlByCode(String code) {
+        UrlShortnerEntity urlShortnerEntity = repository.findByCode(code).orElseThrow(() -> new RuntimeException("Code not found"));
+
+        String url = urlShortnerEntity.getUrl();
+
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("https://www.google.com");
+        redirectView.setUrl(url);
+
+        System.out.println("Redirecting to " + url);
+        System.out.println(urlShortnerEntity.getCode());
+
         return redirectView;
     }
 }
