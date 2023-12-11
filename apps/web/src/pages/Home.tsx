@@ -6,7 +6,7 @@ import {
 } from "../schemas/createShortUrlSchema.ts";
 import { createShortUrlService } from "../services/shortUrlService.ts";
 
-function App() {
+export default function Home() {
   const {
     register,
     handleSubmit,
@@ -49,5 +49,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
