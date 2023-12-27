@@ -1,11 +1,12 @@
+import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import {
   createShortUrl,
   createShortUrlSchema,
 } from "../schemas/createShortUrlSchema.ts";
 import { createShortUrlService } from "../services/shortUrlService.ts";
-import { useSearchParams } from "react-router-dom";
 
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,10 +20,12 @@ export default function Home() {
   });
 
   const onSubmit = async (data: createShortUrl) => {
-    const aa = await createShortUrlService(data);
-    setSearchParams(data.url);
+    const response = await createShortUrlService(data);
 
-    console.log(aa);
+    // todo
+    if (response.code == "error") return;
+
+    setSearchParams(data);
   };
 
   if (searchParams.has("url")) {
