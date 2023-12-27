@@ -7,6 +7,7 @@ import {
   createShortUrlSchema,
 } from "../schemas/createShortUrlSchema.ts";
 import { createShortUrlService } from "../services/shortUrlService.ts";
+import { baseUrl } from "../config/constants.ts";
 
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,7 +26,9 @@ export default function Home() {
     // todo
     if (response.code == "error") return;
 
-    setSearchParams(data);
+    setSearchParams({
+      url: baseUrl + response.data,
+    });
   };
 
   if (searchParams.has("url")) {

@@ -1,6 +1,6 @@
 import axios from "axios";
+import { apiUrl } from "../config/constants";
 
 export const apiClient = axios.create({
-  // baseURL: import.meta.env.API_URL as string,
-  baseURL: "http://localhost:8080",
+  baseURL: apiUrl,
 });
