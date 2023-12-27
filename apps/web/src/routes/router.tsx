@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/redirect/:codeUrl",
+    path: "/:codeUrl",
     element: <Redirect />,
   },
 ]);
