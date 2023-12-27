@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard.ts";
 import {
   createShortUrl,
   createShortUrlSchema,
@@ -11,6 +12,8 @@ import { baseUrl } from "../config/constants.ts";
 
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const [clipboardText, copyToClipboard] = useCopyToClipboard();
 
   const {
     register,
@@ -47,6 +50,10 @@ export default function Home() {
             <button
               type="button"
               className="flex bg-sky-400 py-2 px-4 rounded-r-md"
+              onClick={() => {
+                copyToClipboard(searchParams.get("url"));
+                console.log(clipboardText);
+              }}
             >
               Copy
             </button>
