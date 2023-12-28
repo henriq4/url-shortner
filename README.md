@@ -39,7 +39,7 @@ TODO
 ```
 .
 ├── apps
-│    ├── web
+│    └──├── web
 │    └── api
 └── docker-compose.yml
 ```
@@ -103,7 +103,7 @@ Feel free to contribute to the project by creating issues or submitting pull req
 
 ## License
 
-This project is under MIT License and philosophy on [academic honesty](https://cs50.harvard.edu/x/2023/honesty/) from CS50.
+This project is under [MIT License](./LICENSE) and philosophy on [academic honesty](https://cs50.harvard.edu/x/2023/honesty/) from CS50.
 
 ## Author
 
