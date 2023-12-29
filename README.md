@@ -14,7 +14,9 @@ This is a full-stack web application for URL shortening, built with modern techn
 
 ## Demo
 
-TODO
+
+https://github.com/henriq4/url-shortner/assets/62851165/2dc1986b-faba-44a3-b5e5-5224411e8b57
+
 
 ## Features
 
